@@ -6,9 +6,15 @@ namespace ConsoleApp1
 {
     internal class Book
     {
-        public string title ="basics";
-      public int pages = 333;
-        
+         
+        //السوال الاول
+        //
+        /*All questions use the same theme: a Book with a Title and Pages.Try each one yourself
+     before checking the answer.*/
+        #region
+        public string title="book" ;
+        public int pages;
+        #endregion
 
     }
 } 
