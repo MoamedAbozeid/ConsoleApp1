@@ -3,193 +3,261 @@ using System.Drawing;
 using System.Dynamic;
 using System.Runtime.Intrinsics.X86;
 using System.Runtime.Versioning;
+using System.Text;
 
 namespace ConsoleApp1
 {
     internal class Program
+
     {
+        void PrintFirstBook(string[] books)
+        {
+            if (books.Length == 0)
+            {
+                return;
+            }
+            Console.WriteLine(books[0]);
+        }
         static void Main(string[] args)
 
         {
-
-            #region
-            //السوال الثاني
-            /* Create a Book class with a Title(string) and Pages(int). Create a Book object and store it
-           in a variable of type object.Print it.*/
-
-
-            Book book = new Book();
-            object obj = book;
-            #endregion
-
-
             #region
             /*
-             * السول لثالث
-            Using the Book class above, print the result of calling ToString(), Equals() (compare book
-          with itself), GetHashCode(), and GetType() on book.*/
-
-            Console.WriteLine(book.ToString());
-            Console.WriteLine(book.GetHashCode());
-            Console.WriteLine(book.Equals(book));
-            Console.WriteLine(book.GetType());
+             * asignment tow
+              */
             #endregion
-
             #region
-            /*السوال الرابع
-             Look at the line below. Is it a compile-time error, a runtime error, or a logical error? Fix it.
-             int pages = "464";*/
-            string pagesText = "464";
-            int pages = Convert.ToInt32(pagesText);
+
+
+            /*
+            * السوال الاول
+             *Declare string title = "clean code";. Call title.ToUpper() and store it in a new variable upperTitle. Print
+               both title and upperTitle to show that title did not change.*/
+
+            string title = "clean code";
+            String uppertitle = title.ToUpper();
+            Console.WriteLine(title);
+            Console.WriteLine(uppertitle);
             #endregion
 
             #region
             /*
-             * السوال الخامس
-            Write code that divides 10 by 0 inside a try block, catches the exception, prints "Cannot
-            divide by zero", and then prints "Done" in a finally block.*/
-
-
-
-
-            int x = 0;
-
-
-            try
-            {
-                Console.WriteLine(10 / x);
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("con't divide by zero");
-            }
-            finally
-            {
-                Console.WriteLine("Done");
-
-            }
-            #endregion
-
-            #region
-            /*السوال السادس
-             * Declare an int pages = 300; then store it in a double variable without using a cast.
+             السوال الثاني
+             Declare two separate string variables, both set to the literal "Clean Code". Use ReferenceEquals()
+              to check if they point to the same object in memory.
              */
+            string title01 = "Clean Code";
+            string title02 = "Clean Code";
+            bool thesamerefrence = ReferenceEquals(title01, title02);
 
-            int age = 300;
-            double ageDouble = (double)age;
-            Console.WriteLine(age);
+            Console.WriteLine(thesamerefrence);
             #endregion
 
             #region
-            /*السوال السابع
-            Declare a double price = 49.99; then convert it into an int using a cast.
+            /*
+            السوال الثالث
+             Using the StringBuilder from the question above, use Replace() to change "Book List" into "Library".
+             Print the result.           
              */
+            /* 
+             السول الرابع
+             Using the StringBuilder from the question above, use Replace() to change "Book List" into "Library".
+              Print the result.
 
-
-            double price = (int)49.99;
-            Console.WriteLine(price);
+            السوالين تبع بعض
+             */
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Book List");
+            sb.Append("-updated");
+            sb.Replace("Book List", "Library");
+            Console.WriteLine(sb.ToString());
             #endregion
 
-            #region
-
-            /* لسوال الثامن
-            Given string pagesText = "464";, convert it into an int using the Convert class.
-            */
-            string pagesText01 = "464";
-            int pages01 = Convert.ToInt32(pagesText01);
-            Console.WriteLine(pages01);
+            #region السوال الخامس
+            /*
+             Given string title = "Clean Code"; and int pages = 464;, build the sentence "Book: Clean Code,
+             Pages: 464" using the + operator.
+             */
+            string title1 = "Clean Code";
+            int pages = 464;
+            string sentence = "Book: " + title1 + ", Pages: " + pages;
+            Console.WriteLine(sentence);
             #endregion
-            #region
-            /* السوال التاسع
-             Given string yearText = "2023";, convert it using int.Parse(). Then given string badText =
-             "abc";, use int.TryParse() to safely try converting it, and print "Invalid number" if it fails.
-            */
-            string yeartext = "2023";
-            int year = int.Parse(yeartext);
-            Console.WriteLine(year);
-            String badText = "abc";
 
-            if (int.TryParse(badText, out int number))
+            #region السوال السادس
+            /*
+             Build the same sentence as above, but using string interpolation ($"...").
+             */
+            string title101 = "Clean Code";
+            int pages01 = 464;
+            string sentence01 = $"Book:  {title101} ,  Pages01: {pages01}";
+            Console.WriteLine(sentence01);
+            #endregion
+            #region السوال لسابع
+            /*
+             Build the same sentence again, but using string.Format().
+             */
+            string title102 = "Clean Code";
+            int pages02 = 464;
+            string sentence02 = string.Format("Book: {0}, Pages: {1}", title102, pages02);
+            Console.WriteLine(sentence02);
+
+            #endregion
+            #region السوال الثامن
+            /* 
+             Given int pages = 464;, write an if / else statement that prints "Long Book" if pages is greater than
+              300, otherwise prints "Short Book".
+             */
+            int pages03 = 464;
+
+            if (pages03 > 300)
             {
-                Console.WriteLine(number);
+                Console.WriteLine("Long Book");
             }
             else
             {
+                Console.WriteLine("Short Book");
+            }
+            #endregion
 
-                Console.WriteLine("Invalid number");
+            #region السوال التاسع
+            /*
+            Given int pages = 464; and bool isAvailable = true;, print "You can borrow this book" only if pages is
+            greater than 300 and isAvailable is true. Use the && operator. 
+             */
+            int pages04 = 464;
+            bool isAvailable = true;
+
+            if (pages04 > 300 && isAvailable)
+            {
+                Console.WriteLine("You can borrow this book");
+            }
+            #endregion
+            #region السوال العاشر
+            /*Given string title = "Refactoring";, write a switch statement that prints "Great choice!" if the title is
+             "Clean Code", "Nice pick!" if it's "Refactoring", and "Never heard of it" for anything else.*/
+
+            string title03 = "Refactoring";
+            switch (title03)
+            {
+                case "Clean Code":
+                    Console.WriteLine("Great choice!");
+                    break;
+                case "Refactoring":
+                    Console.WriteLine("Nice pick!");
+                    break;
+                default:
+                    Console.WriteLine("Never heard of it");
+                    break;
+            }
+            #endregion
+
+            #region السوال الحادي عشر
+            /*
+             Given int pages = 464;, use the ternary operator to store "Long Book" or "Short Book" into a
+             variable sizeLabel (same rule as question 8: long if pages > 300).
+             */
+            int pages05 = 464;
+            string sizeLabel = (pages05 > 300) ? "Long Book" : "Short Book";
+            Console.WriteLine(sizeLabel);
+            #endregion
+
+            #region السوال الثاني عثر
+            /*
+             Given string[] books = { "Clean Code", "The Pragmatic Programmer", "Refactoring" };, use a for loop
+             to print each book with its position number, like 1. Clean Code.
+             */
+
+
+            /*    
+             
+             * السوال الثالث عثر 
+
+             Using the same books array, use a while loop to print every book title.
+             */
+
+            string[] books = { "Clean Code", "The Pragmatic Programmer", "Refactoring" };
+            for (int i = 0; i < books.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}. {books[i]}");
+
+            }
+            int j = 0;
+            while (j < books.Length)
+            {
+                Console.WriteLine(books[j]);
+                j++;
+            }
+            
+            #endregion
+                    #region السوال الرابع عشر
+                    /*
+                     Write a do-while loop that prints "Checking book..." exactly 3 times.
+                     */
+                    int x = 0;
+                    do
+                    { Console.WriteLine("Checking book...");
+                        x++;
+                    }
+                    while (x < 3);
+
+
+
+            #endregion
+            #region سوال الخامس عشر
+            /* السوال الخامس عشر
+            * Using the same books array, use a foreach loop to print every book title.
+            */
+            foreach (string book in books)
+            {
+                Console.WriteLine(book);
+            }
+            #endregion
+
+
+            #region  لسوال السادس عشر
+            /*
+             Using the same books array, loop through it and print each title, but stop completely (break) once
+              you reach "Refactoring".
+             */
+            int k = 0;
+                    while (k < books.Length)
+                    {
+                        if (books[k] == "Refactoring")
+                        {
+                            break;
+                        }
+                        Console.WriteLine(books[k]);
+                        k++;
+                    }
+            #endregion
+            #region  السوال السابع عشر
+            /*
+             Using the same books array, print every title except "The Pragmatic Programmer" (skip it with
+             continue, don't stop the loop).
+             */
+            int m = 0;
+            while (m < books.Length)
+            {
+                if (books[m] == "The Pragmatic Programmer")
+                {
+                    m++;
+                    continue;
+                }
+                Console.WriteLine(books[m]);
+                m++;
             }
 
             #endregion
-            #region
+            #region السوال الثامن عشر
             /*
-             * السوال العاثر
-             * Given int pages = 464;, convert it into a string using ToString() and print its type using
-              GetType() to prove it's now a string.
+             * Write a method PrintFirstBook() that prints the first book in the books array. If the array is empty,
+use return to exit the method early instead of printing anything.
              */
-            int page = 464;
-            string pagtext = page.ToString();
-            Console.WriteLine(pagtext);
-            Console.WriteLine(pagtext.GetType());
+            
             #endregion
-            #region
-            /*
-             Declare int copies = 100;. Box it into an object variable, then unbox it back into a new int
-              variable, and print both.
-             */
-            int copies = 100;
-            object poxcopies = copies;
-            Console.WriteLine(poxcopies);
-            object poxcopies01 = 100;
-            int copies01 = (int)poxcopies;
-            Console.WriteLine(copies01);
-            #endregion
-            #region
-            /*
-             * السوال الحادي عشر
-            Declare an int? year = null;. Print whether it has a value, then assign it 2023 and print its
-            value. 
-             */
-            int? year01 = null;
-            Console.WriteLine(year01.HasValue);
-             year01 = 2023;
-            Console.WriteLine(year01.Value);
-            #endregion
-            #region
-            /*
-            السوال لثاني عشر
-             * Declare a string? reviewer = null;. Print whether it is null*/
-            string? reviewer = null;
-            Console.WriteLine(reviewer is null);
-            #endregion
-            #region
-            /* السوال الثالث عشر
-             * Declare a Book? book = null;. Use?.to safely read book.Title without crashing the
-              program, and print the result*/
-            Book? book01 = null;
-            Console.WriteLine(book01?.title);
-
-            #endregion
-            #region
-            /*
-             * السول الرابع عشر
-             * Using title from the previous question, use ?? to print "Untitled" if title is null. Then use ??=
-              to assign title the value "Untitled" only if it's still null.
-             */
-            string? title = null;
-            Console.WriteLine(title ?? "Untitled");
-            title ??= "Untitled";
-            #endregion
-            #region
-            /*
-             السول الخامس عشر
-            Given string? name = "Ahmed"; (you are sure it's not null here), assign it to a non-nullable
-            string confirmedName using the ! operator j.
-             */
-            string name = "ahmed";
-            string confirmedName = name!;
-            Console.WriteLine(confirmedName);
-            #endregion
-
         }
     }
         }
+
+           
