@@ -183,7 +183,7 @@ namespace ConsoleApp1
             /*
              السول الخامس عشر
             Given string? name = "Ahmed"; (you are sure it's not null here), assign it to a non-nullable
-            string confirmedName using the ! operator.
+            string confirmedName using the ! operator j.
              */
             string name = "ahmed";
             string confirmedName = name!;
