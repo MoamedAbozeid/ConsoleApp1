@@ -1,10 +1,11 @@
-﻿using System;
+﻿using commn.Enum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class Book
+    public class Book
     {
          
         //السوال الاول
@@ -12,9 +13,11 @@ namespace ConsoleApp1
         
     
         #region
-        public string title="book" ;
-        public int pages;
+        private string password="secret";
+        internal int copiesInStock = 5;
+        
         #endregion
-
+        public string? Title;
+        public Gener Genre;
     }
 } 

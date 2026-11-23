@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿
+using commn.Enum;
+using System.ComponentModel;
 using System.Drawing;
 using System.Dynamic;
 using System.Runtime.Intrinsics.X86;
@@ -10,252 +12,109 @@ namespace ConsoleApp1
     internal class Program
 
     {
-        void PrintFirstBook(string[] books)
-        {
-            if (books.Length == 0)
-            {
-                return;
-            }
-            Console.WriteLine(books[0]);
-        }
+     
         static void Main(string[] args)
 
         {
-            #region
+            #region السوال الاول
             /*
-             * asignment tow
-              */
-            #endregion
-            #region
-
-
-            /*
-            * السوال الاول
-             *Declare string title = "clean code";. Call title.ToUpper() and store it in a new variable upperTitle. Print
-               both title and upperTitle to show that title did not change.*/
-
-            string title = "clean code";
-            String uppertitle = title.ToUpper();
-            Console.WriteLine(title);
-            Console.WriteLine(uppertitle);
-            #endregion
-
-            #region
-            /*
-             السوال الثاني
-             Declare two separate string variables, both set to the literal "Clean Code". Use ReferenceEquals()
-              to check if they point to the same object in memory.
+             Add a private string password = "secret"; field to a Book class. Try to print it from Main
+           (outside the class). What happens, and why?
              */
-            string title01 = "Clean Code";
-            string title02 = "Clean Code";
-            bool thesamerefrence = ReferenceEquals(title01, title02);
-
-            Console.WriteLine(thesamerefrence);
+            //هيدي error علشان password privet ومينفعش اوصلو برا class.
+           /* Book book = new Book();
+            book.password;
+            Console.WriteLine(book.password);*/
             #endregion
-
-            #region
+            /////////////////////////////
+            #region  السوال الثاني
             /*
-            السوال الثالث
-             Using the StringBuilder from the question above, use Replace() to change "Book List" into "Library".
-             Print the result.           
+             Add an internal int copiesInStock = 5; field to Book. Print it from Main. Does it compile?
+             Why?
              */
-            /* 
-             السول الرابع
-             Using the StringBuilder from the question above, use Replace() to change "Book List" into "Library".
-              Print the result.
-
-            السوالين تبع بعض
-             */
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Book List");
-            sb.Append("-updated");
-            sb.Replace("Book List", "Library");
-            Console.WriteLine(sb.ToString());
+            //هيشتغل عادي من غير error علشان copiesInStock internal وممكن اوصلو برا class.
+            Book book= new Book();
+            book.copiesInStock=5;
+            Console.WriteLine(book.copiesInStock);
             #endregion
+            ///////////////////////////////////
+            #region لسوال الثالث
+            /*
+            Add a public string Title; field to Book. Set it and print it from Main
+            */
 
+            Book obj= new Book();
+            obj.Title="book";
+            Console.WriteLine(obj.Title);
+            #endregion
+            //////////////////
+            #region السول الرابع
+            /*
+             Declare an enum Genre { Fiction, NonFiction, Science }. Add a Genre property to Book,
+               assign it Genre.Science, and print it.
+             */
+            Book book01= new Book();
+            book01.Genre = Gener.science;
+            Console.WriteLine(book01.Genre);
+
+            #endregion
+            /////////////////////////
             #region السوال الخامس
             /*
-             Given string title = "Clean Code"; and int pages = 464;, build the sentence "Book: Clean Code,
-             Pages: 464" using the + operator.
+             Using the Genre enum above, print the underlying int value of
+              Genre.Fiction, Genre.NonFiction, and Genre.Science by casting each to int.
              */
-            string title1 = "Clean Code";
-            int pages = 464;
-            string sentence = "Book: " + title1 + ", Pages: " + pages;
-            Console.WriteLine(sentence);
+            Console.WriteLine((int)Gener.Fiction);
+            Console.WriteLine((int)Gener.Nonfiction);
+            Console.WriteLine((int)Gener.science);
             #endregion
-
+            /////////////////////////
             #region السوال السادس
             /*
-             Build the same sentence as above, but using string interpolation ($"...").
+             Given int genreNumber = 1;, cast it into a Genre value and print the result
              */
-            string title101 = "Clean Code";
-            int pages01 = 464;
-            string sentence01 = $"Book:  {title101} ,  Pages01: {pages01}";
-            Console.WriteLine(sentence01);
+            int genreNumber = 1;
+            Gener genre = (Gener)genreNumber;
+            Console.WriteLine(genre);
             #endregion
-            #region السوال لسابع
+            ////////////////////////////
+            #region السوال السابع
             /*
-             Build the same sentence again, but using string.Format().
+             * Given Genre genre = Genre.Fiction;, convert it into a string using ToString() and print it.
              */
-            string title102 = "Clean Code";
-            int pages02 = 464;
-            string sentence02 = string.Format("Book: {0}, Pages: {1}", title102, pages02);
-            Console.WriteLine(sentence02);
-
+            Gener genre1 = Gener.Fiction;
+            string genreString = genre1.ToString();
+            Console.WriteLine(genreString);
             #endregion
-            #region السوال الثامن
-            /* 
-             Given int pages = 464;, write an if / else statement that prints "Long Book" if pages is greater than
-              300, otherwise prints "Short Book".
-             */
-            int pages03 = 464;
+            /////////////////////////////
+            #region السوال الثامن 
+            /*
+             Given string genreText = "Science";, convert it into a Genre value using Enum.Parse() and
+              print the result.
 
-            if (pages03 > 300)
+             */
+            string genreText = "Science";
+            Gener genre2 = (Gener)Enum.Parse(typeof(Gener), genreText);
+            Console.WriteLine(genre2);
+            #endregion
+            /////////////////////
+            #region السوال التاسع
+            /*
+             Given string genreText = "Mystery"; (not a valid Genre value), use Enum.TryParse() to
+              attempt the conversion. Print "Unknown genre" if it fails.
+             */
+            string genreText1 = "Mystery";
+            Gener gener;
+            if (Enum.TryParse(genreText1, out gener))
             {
-                Console.WriteLine("Long Book");
+                Console.WriteLine(gener);
             }
             else
             {
-                Console.WriteLine("Short Book");
+                Console.WriteLine("Unknown genre");
+
+            #endregion
             }
-            #endregion
-
-            #region السوال التاسع
-            /*
-            Given int pages = 464; and bool isAvailable = true;, print "You can borrow this book" only if pages is
-            greater than 300 and isAvailable is true. Use the && operator. 
-             */
-            int pages04 = 464;
-            bool isAvailable = true;
-
-            if (pages04 > 300 && isAvailable)
-            {
-                Console.WriteLine("You can borrow this book");
-            }
-            #endregion
-            #region السوال العاشر
-            /*Given string title = "Refactoring";, write a switch statement that prints "Great choice!" if the title is
-             "Clean Code", "Nice pick!" if it's "Refactoring", and "Never heard of it" for anything else.*/
-
-            string title03 = "Refactoring";
-            switch (title03)
-            {
-                case "Clean Code":
-                    Console.WriteLine("Great choice!");
-                    break;
-                case "Refactoring":
-                    Console.WriteLine("Nice pick!");
-                    break;
-                default:
-                    Console.WriteLine("Never heard of it");
-                    break;
-            }
-            #endregion
-
-            #region السوال الحادي عشر
-            /*
-             Given int pages = 464;, use the ternary operator to store "Long Book" or "Short Book" into a
-             variable sizeLabel (same rule as question 8: long if pages > 300).
-             */
-            int pages05 = 464;
-            string sizeLabel = (pages05 > 300) ? "Long Book" : "Short Book";
-            Console.WriteLine(sizeLabel);
-            #endregion
-
-            #region السوال الثاني عثر
-            /*
-             Given string[] books = { "Clean Code", "The Pragmatic Programmer", "Refactoring" };, use a for loop
-             to print each book with its position number, like 1. Clean Code.
-             */
-
-
-            /*    
-             
-             * السوال الثالث عثر 
-
-             Using the same books array, use a while loop to print every book title.
-             */
-
-            string[] books = { "Clean Code", "The Pragmatic Programmer", "Refactoring" };
-            for (int i = 0; i < books.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}. {books[i]}");
-
-            }
-            int j = 0;
-            while (j < books.Length)
-            {
-                Console.WriteLine(books[j]);
-                j++;
-            }
-            
-            #endregion
-                    #region السوال الرابع عشر
-                    /*
-                     Write a do-while loop that prints "Checking book..." exactly 3 times.
-                     */
-                    int x = 0;
-                    do
-                    { Console.WriteLine("Checking book...");
-                        x++;
-                    }
-                    while (x < 3);
-
-
-
-            #endregion
-            #region سوال الخامس عشر
-            /* السوال الخامس عشر
-            * Using the same books array, use a foreach loop to print every book title.
-            */
-            foreach (string book in books)
-            {
-                Console.WriteLine(book);
-            }
-            #endregion
-
-
-            #region  لسوال السادس عشر
-            /*
-             Using the same books array, loop through it and print each title, but stop completely (break) once
-              you reach "Refactoring".
-             */
-            int k = 0;
-                    while (k < books.Length)
-                    {
-                        if (books[k] == "Refactoring")
-                        {
-                            break;
-                        }
-                        Console.WriteLine(books[k]);
-                        k++;
-                    }
-            #endregion
-            #region  السوال السابع عشر
-            /*
-             Using the same books array, print every title except "The Pragmatic Programmer" (skip it with
-             continue, don't stop the loop).
-             */
-            int m = 0;
-            while (m < books.Length)
-            {
-                if (books[m] == "The Pragmatic Programmer")
-                {
-                    m++;
-                    continue;
-                }
-                Console.WriteLine(books[m]);
-                m++;
-            }
-
-            #endregion
-            #region السوال الثامن عشر
-            /*
-             * Write a method PrintFirstBook() that prints the first book in the books array. If the array is empty,
-use return to exit the method early instead of printing anything.
-             */
-            
-            #endregion
         }
     }
         }
