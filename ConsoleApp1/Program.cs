@@ -1,65 +1,122 @@
-﻿using System.Runtime.Versioning;
+﻿
+using commn.Enum;
+using System.ComponentModel;
+using System.Drawing;
+using System.Dynamic;
+using System.Runtime.Intrinsics.X86;
+using System.Runtime.Versioning;
+using System.Text;
 
 namespace ConsoleApp1
 {
     internal class Program
+
     {
+     
         static void Main(string[] args)
 
         {
-            Book book = new Book();
-            object obj = book;
-
-
-
-
-            Console.WriteLine(book.ToString());
-            Console.WriteLine(book.GetHashCode());
-            Console.WriteLine(book.Equals(book));
-            Console.WriteLine(book.GetType());
-
+            #region السوال الاول
             /*
-             * int pages="464";
-             * combile time
-             * */
-            /* int pages = 464;
-             Console.WriteLine(pages);
-
-             int x = 0;
-
-             try
-             {
-                 int result = 10/x;
-             }
-             catch (DivideByZeroException)
-             {
-                 Console.WriteLine("con't divide by zero");
-             }
-             finally
-             {
-                 Console.WriteLine("Done");
-
-             }
+             Add a private string password = "secret"; field to a Book class. Try to print it from Main
+           (outside the class). What happens, and why?
+             */
+            //هيدي error علشان password privet ومينفعش اوصلو برا class.
+           /* Book book = new Book();
+            book.password;
+            Console.WriteLine(book.password);*/
+            #endregion
+            /////////////////////////////
+            #region  السوال الثاني
+            /*
+             Add an internal int copiesInStock = 5; field to Book. Print it from Main. Does it compile?
+             Why?
+             */
+            //هيشتغل عادي من غير error علشان copiesInStock internal وممكن اوصلو برا class.
+            Book book= new Book();
+            book.copiesInStock=5;
+            Console.WriteLine(book.copiesInStock);
+            #endregion
+            ///////////////////////////////////
+            #region لسوال الثالث
+            /*
+            Add a public string Title; field to Book. Set it and print it from Main
             */
-            int age = 300;
-            double agedoubel = age;
-            Console.WriteLine(age);
 
-            double price = (int)49.99;
-            Console.WriteLine(price);
+            Book obj= new Book();
+            obj.Title="book";
+            Console.WriteLine(obj.Title);
+            #endregion
+            //////////////////
+            #region السول الرابع
+            /*
+             Declare an enum Genre { Fiction, NonFiction, Science }. Add a Genre property to Book,
+               assign it Genre.Science, and print it.
+             */
+            Book book01= new Book();
+            book01.Genre = Gener.science;
+            Console.WriteLine(book01.Genre);
 
-            String pagestext = "464";
-            int pages = Convert.ToInt32(pagestext);
-            Console.WriteLine(pages);
+            #endregion
+            /////////////////////////
+            #region السوال الخامس
+            /*
+             Using the Genre enum above, print the underlying int value of
+              Genre.Fiction, Genre.NonFiction, and Genre.Science by casting each to int.
+             */
+            Console.WriteLine((int)Gener.Fiction);
+            Console.WriteLine((int)Gener.Nonfiction);
+            Console.WriteLine((int)Gener.science);
+            #endregion
+            /////////////////////////
+            #region السوال السادس
+            /*
+             Given int genreNumber = 1;, cast it into a Genre value and print the result
+             */
+            int genreNumber = 1;
+            Gener genre = (Gener)genreNumber;
+            Console.WriteLine(genre);
+            #endregion
+            ////////////////////////////
+            #region السوال السابع
+            /*
+             * Given Genre genre = Genre.Fiction;, convert it into a string using ToString() and print it.
+             */
+            Gener genre1 = Gener.Fiction;
+            string genreString = genre1.ToString();
+            Console.WriteLine(genreString);
+            #endregion
+            /////////////////////////////
+            #region السوال الثامن 
+            /*
+             Given string genreText = "Science";, convert it into a Genre value using Enum.Parse() and
+              print the result.
 
-            string yeartext = "2023";
+             */
+            string genreText = "Science";
+            Gener genre2 = (Gener)Enum.Parse(typeof(Gener), genreText);
+            Console.WriteLine(genre2);
+            #endregion
+            /////////////////////
+            #region السوال التاسع
+            /*
+             Given string genreText = "Mystery"; (not a valid Genre value), use Enum.TryParse() to
+              attempt the conversion. Print "Unknown genre" if it fails.
+             */
+            string genreText1 = "Mystery";
+            Gener gener;
+            if (Enum.TryParse(genreText1, out gener))
+            {
+                Console.WriteLine(gener);
+            }
+            else
+            {
+                Console.WriteLine("Unknown genre");
 
-            int year = int.Parse(yeartext);
-            Console.WriteLine(year);
-
-            string yeartext01 = "abc";
-            bool result = int.TryParse(yeartext01, out int text);
-            Console.WriteLine(result);
+            #endregion
+            }
         }
     }
-}
+        }
+
+           

@@ -1,14 +1,23 @@
-﻿using System;
+﻿using commn.Enum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp1
 {
-    internal class Book
+    public class Book
     {
-        public string title ="basics";
-      public int pages = 333;
+         
+        //السوال الاول
+        //
         
-
+    
+        #region
+        private string password="secret";
+        internal int copiesInStock = 5;
+        
+        #endregion
+        public string? Title;
+        public Gener Genre;
     }
 } 
